@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dao.memberMapper">
+	<resultMap type="com.doseoul.memberDto.MemberDto" id="memberDto">
+		<result column="member_num" property="member_num"/>
+		<result column="member_id" property="member_id"/>
+		<result column="member_pw" property="member_pw"/>
+		<result column="member_name" property="member_name"/>
+		<result column="member_gender" property="member_gender"/>
+		<result column="member_year" property="member_year"/>
+		<result column="member_month" property="member_month"/>
+		<result column="member_day" property="member_day"/>
+		<result column="member_email" property="member_email"/>
+		<result column="member_tel" property="member_tel"/>
+		<result column="member_level" property="member_level"/>
+		<result column="member_register_date" property="member_register_date"/>
+	</resultMap>
+	
+	<insert id="memberInsert" parameterType="com.doseoul.memberDto.MemberDto">
+		insert into member_table
+		values(member_table_member_num_sql.nextval, #{member_id}, #{member_pw}, #{member_name}, #{member_gender}, #{member_year}, #{member_month}, #{member_day}, #{member_email}, #{member_tel}, #{member_level}, #{member_register_date})
+	</insert>
+	
+	<select id="login" parameterType="java.util.HashMap" resultType="String">
+		select member_level from member_table 
+		where member_id=#{member_id} and member_pw=#{member_pw}
+	</select>
+	
+	<!-- <select id="memberIdCheck" parameterType="String" resultType="String">
+		select id from member where id=#{id}
+	</select>
+	
+	
+	
+	<delete id="memberDelete" parameterType="java.util.HashMap">
+		delete from member 
+		where id=#{id} and password=#{password}
+	</delete>
+	
+	<select id="memberUpdateSelect" parameterType="String" resultType="com.doseoul.memberDto.MemberDto">
+		select * from member
+		where id=#{id}
+	</select>
+	
+	<update id="memberUpdate" parameterType="com.doseoul.memberDto.MemberDto">
+		<![CDATA[
+			update member
+			set password=#{password}, email=#{email}, zipcode=#{zipcode}, address=#{address}, job=#{job}, mailing=#{mailing}, interest=#{interest}
+			where num=#{num}
+		]]>
+	</update> -->
+</mapper>
